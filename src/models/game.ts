@@ -1,5 +1,5 @@
 export class Game {
-    public players: string[] = [];
+    public players: string[] = ['Hans','Peter', 'Nico'];
     public stack: string[] = [];
     public playedCards: string[] = [];
     public currentPlayer: number = 0;
@@ -15,7 +15,7 @@ export class Game {
     }
 }
 
-/* function shuffle(stack) {
+function shuffle(stack) {
     let currentIndex = stack.length, temporaryValue, randomIndex;
   
     // While there remain elements to shuffle.
@@ -32,4 +32,4 @@ export class Game {
     }
   
     return stack;
-} */
+}
