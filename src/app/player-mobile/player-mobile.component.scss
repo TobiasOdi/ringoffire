@@ -1,0 +1,27 @@
+.player {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    background-color: lightgray;
+    width: 100px;
+    border-radius: 0 0 20px 20px;
+    padding: 10px;
+
+    div {
+        font-size: 16px;
+        text-align: center;
+    }
+
+    img {
+        height: 35px;
+        width: auto;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+}
+
+.activePlayer {
+    background-color: orange;
+}

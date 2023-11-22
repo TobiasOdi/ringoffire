@@ -16,6 +16,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { GameInfoComponent } from './game-info/game-info.component';
 import { MatCardModule } from '@angular/material/card';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { PlayerMobileComponent } from './player-mobile/player-mobile.component';
+
 //import { AngularFireModule } from '@angular/fire/compat';
 //import { environment } from '../environments/environment';
 @NgModule({
@@ -25,10 +29,13 @@ import { MatCardModule } from '@angular/material/card';
     GameComponent,
     PlayerComponent,
     DialogAddPlayerComponent,
-    GameInfoComponent
+    GameInfoComponent,
+    PlayerMobileComponent
   ],
   imports: [
     BrowserModule,
+    provideFirebaseApp(() => initializeApp({"projectId":"ring-of-fire-5e654","appId":"1:805592975519:web:7bee56ec28bb522665baaa","storageBucket":"ring-of-fire-5e654.appspot.com","apiKey":"AIzaSyBpgAiowW65vlbJ7Pr4oSJvDd0oiUfVYV8","authDomain":"ring-of-fire-5e654.firebaseapp.com","messagingSenderId":"805592975519"})),
+    provideFirestore(() => getFirestore()),
     //AngularFireModule.initializeApp(environment.firebase),
     AppRoutingModule,
     BrowserAnimationsModule,
