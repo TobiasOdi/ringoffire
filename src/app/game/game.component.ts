@@ -15,8 +15,6 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./game.component.scss']
 })
 export class GameComponent implements OnInit {
-  pickCardAnimation = false;
-  currentCard;
   game!: Game;
   firestore: Firestore = inject(Firestore);
   gameDb = collection(this.firestore, 'games');
@@ -34,6 +32,8 @@ export class GameComponent implements OnInit {
         this.game.playedCards = gameData.playedCards;
         this.game.players = gameData.players;
         this.game.stack = gameData.stack;
+        this.game.pickCardAnimation = gameData.pickCardAnimation;
+        this.game.currentCard = gameData.currentCard;
       });
     });
   }
@@ -43,17 +43,15 @@ export class GameComponent implements OnInit {
   }
 
   takeCard() {
-    if(!this.pickCardAnimation) {
-      this.currentCard = this.game.stack.pop(); // Gibt den letzten Wert aus dem Array zurück und entfernt diesen
-      this.pickCardAnimation = true;
-      this.saveGame();
-
+    if(!this.game.pickCardAnimation) {
+      this.game.currentCard = this.game.stack.pop()!; // Gibt den letzten Wert aus dem Array zurück und entfernt diesen
+      this.game.pickCardAnimation = true;
       this.game.currentPlayer++;
       this.game.currentPlayer = this.game.currentPlayer % this.game.players.length;
-
+      this.saveGame();
       setTimeout(() => {
-        this.pickCardAnimation = false;
-        this.game.playedCards.push(this.currentCard);
+        this.game.pickCardAnimation = false;
+        this.game.playedCards.push(this.game.currentCard);
         this.saveGame();
       }, 1000);
     };

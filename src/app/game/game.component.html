@@ -1,6 +1,6 @@
-<app-player *ngFor="let player of game.players; let i = index;" class="playerPosition hide-mobile" [ngStyle]="{'top.px': 50 + (i * 150)}" [name]="player" [playerActive]="i == game.currentPlayer"></app-player>
+<app-player *ngFor="let player of game.players; let i = index;" class="playerPosition hide-desktop" [ngStyle]="{'top.px': 50 + (i * 150)}" [name]="player" [playerActive]="i == game.currentPlayer"></app-player>
 
-<div class="scrollContainer hide-desktop">
+<div class="scrollContainer hide-mobile">
     <app-player-mobile *ngFor="let player of game.players; let i = index;"x 
         [name]="player" [playerActive]="i == game.currentPlayer">
     </app-player-mobile>
@@ -16,12 +16,12 @@
         <img *ngFor="let card of game.playedCards" src="assets/img/cards/{{ card }}.png" class="playedCards">
 
         <!-- Current card animation -->
-        <img (click)="takeCard()" *ngIf="pickCardAnimation" class="pickCard pickCardAnimation" style="right: 25px" src="assets/img/cards/{{ currentCard }}.png">
+        <img (click)="takeCard()" *ngIf="game.pickCardAnimation" class="pickCard pickCardAnimation" style="right: 25px" src="assets/img/cards/{{ game.currentCard }}.png">
 
 
     </div>
 </div>
-<app-game-info [card]="currentCard"></app-game-info>
+<app-game-info [card]="game.currentCard"></app-game-info>
 
 <button mat-fab color="primary" (click)="openDialog()" class="addButton">
     <mat-icon>add</mat-icon>
